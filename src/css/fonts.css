@@ -1,0 +1,41 @@
+@font-face {
+  font-family: "Pretendard-SemiBold";
+  src: url("../../public/assets/fonts/Pretendard-SemiBold.otf") format("woff");
+}
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("../../public/assets/fonts/Pretendard-Regular.otf") format("woff");
+}
+@font-face {
+  font-family: "Pretendard-Medium";
+  src: url("../../public/assets/fonts/Pretendard-Medium.otf") format("woff");
+}
+@font-face {
+  font-family: "UhBeeKang-ja";
+  src: url("../../public/assets/fonts/UhBeeKang-ja.woff") format("woff");
+}
+@font-face {
+  font-family: "Title";
+  src: url("../../public/assets/fonts/Title_Medium.otf")
+    format("woff");
+}
+
+.SemiBold {
+  font-family: "Pretendard-SemiBold";
+}
+
+.Medium {
+  font-family: "Pretendard-Medium";
+}
+
+.Regular {
+  font-family: "Pretendard-Regular";
+}
+
+.UhBee {
+  font-family: "UhBeeKang-ja";
+}
+
+.Title {
+  font-family: "Title";
+}
