@@ -1,13 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Lottie from "lottie-react";
 import loadingAnimation from "../assets/lottie/loading.json";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function LoadingPage() {
   const location = useLocation();
-  const { answers } = location.state || {}; // ✅ 전달받은 값
+  const navigate = useNavigate();
+  const { answers } = location.state || {};
 
   console.log("넘어온 답변 데이터:", answers);
+
+  useEffect(() => {
+    if (!answers) return;
+
+    const sendMBTIResult = async () => {
+      try {
+        const response = await axios.post(
+          "https://calc.sku-sku.com/mbti/result",
+          { answers }
+        );
+        console.log("응답 데이터:", response.data);
+
+        // navigate("/mbti/final", { state: { result: response.data } });
+      } catch (error) {
+        console.error("API 요청 실패:", error);
+      }
+    };
+
+    sendMBTIResult();
+  }, [answers, navigate]);
 
   return (
     <div className="min-h-screen flex flex-col">

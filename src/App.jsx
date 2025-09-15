@@ -1,17 +1,22 @@
 import React from "react";
 import Start from "./pages/Start";
-import CinderellaMBTITest from "./pages/CinderellaMBTITest";
-import LoadingPage from "./pages/LoadingPage";
+import Result from "./pages/Result";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CinderellaTest from "./pages/CinderellaMBTITest";
+import Loading from "./pages/LoadingPage";
 
 function App() {
   return (
-    <>
-      <div className="App  h-full">
-        {/* <Start /> */}
-        <CinderellaMBTITest />
-        {/* <LoadingPage /> */}
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Start />} />
+          <Route path="/result" element={<Result />} />
+          <Route path="/cinderella" element={<CinderellaTest />} />
+          <Route path="loading" element={<Loading />} />
+        </Routes>
       </div>
-    </>
+    </Router>
   );
 }
 
