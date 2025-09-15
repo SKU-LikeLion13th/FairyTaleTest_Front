@@ -11,6 +11,10 @@
   src: url("../../public/assets/fonts/Pretendard-Medium.otf") format("woff");
 }
 @font-face {
+  font-family: "Pretendard-Light";
+  src: url("../../public/assets/fonts/Pretendard-Light.otf") format("woff");
+}
+@font-face {
   font-family: "UhBeeKang-ja";
   src: url("../../public/assets/fonts/UhBeeKang-ja.woff") format("woff");
 }
@@ -30,6 +34,10 @@
 
 .Regular {
   font-family: "Pretendard-Regular";
+}
+
+.Light {
+  font-family: "Pretendard-Light";
 }
 
 .UhBee {

@@ -3,6 +3,7 @@ import images from "../utils/Images.jsx";
 import TestEx from "./TestEx.jsx";
 
 const Start = () => {
+  console.log(images.StartImg)
   return (
     <div className="min-h-screen relative w-full bg-[#D9F3FE] overflow-hidden">
       <div className="absolute inset-0 z-0 pointer-events-none">

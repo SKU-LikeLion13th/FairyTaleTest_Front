@@ -8,6 +8,7 @@ const TestEx = () => {
   const goToResult = () => {
     const result = { mbti: "ENFP" }; // 테스트용 고정 결과
     const encoded = encodeData(result);
+    sessionStorage.setItem("didTest", "1");
     navigate(`/result?data=${encoded}`);
   };
 
