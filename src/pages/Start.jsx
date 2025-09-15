@@ -7,8 +7,8 @@ const Start = () => {
   return (
     <div className="min-h-screen relative w-full bg-[#D9F3FE] overflow-hidden">
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <img src={images.cloud1} className="absolute top-[22%] right-0"/>
-        <img src={images.cloud2} className="absolute bottom-[40%]"/>
+        <img src={images.cloud1} className="absolute top-[22%] right-0" />
+        <img src={images.cloud2} className="absolute bottom-[40%]" />
       </div>
       <div className="relative z-10 flex flex-col justify-center items-center min-h-screen">
         <p
@@ -20,8 +20,7 @@ const Start = () => {
       -1px  1px 0 white,
       1px  1px 0 white
     `,
-          }}
-        >
+          }}>
           나는 어떤 신데렐라일까?
         </p>
         <div className="w-full flex flex-col justify-center items-center text-center">
@@ -53,7 +52,7 @@ const Start = () => {
               <button className="bg-[#272727] p-3 mx-5 rounded-2xl text-white">
                 제작자 →
               </button>
-              <TestEx/>
+              <TestEx />
             </div>
           </div>
         </div>
