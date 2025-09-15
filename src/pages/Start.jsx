@@ -46,10 +46,10 @@ const Start = () => {
               지금부터 너만의 신데렐라 유형을 알아보자!
             </p>
             <div className="flex flex-col gap-5 Regular text-[15px]">
-              <button className="bg-[#0073FF] p-3 mx-5 rounded-2xl text-white">
+              <button className="bg-[#0073FF] p-3 mx-5 rounded-2xl text-white cursor-pointer">
                 시작하기 →
               </button>
-              <button className="bg-[#272727] p-3 mx-5 rounded-2xl text-white">
+              <button className="bg-[#272727] p-3 mx-5 rounded-2xl text-white cursor-pointer">
                 제작자 →
               </button>
               <TestEx />

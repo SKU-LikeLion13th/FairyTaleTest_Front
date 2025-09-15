@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { decodeData } from "../utils/b64";
 import images from "../utils/Images.jsx";
@@ -24,6 +24,7 @@ const MBTI_IMAGES = {
 };
 
 const Result = () => {
+  const KAKAO_KEY = "9501dcff2358acfe7aa7871bbe8bbf7d";
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const encoded = params.get("data") || "";
@@ -42,9 +43,83 @@ const Result = () => {
     navigate("/");
   };
 
+  //사진 저장 기능
+  const handleSaveImage = async () => {
+    if (!imgSrc || !mbti) return;
+    try {
+      const resp = await fetch(imgSrc, { mode: "cors" });
+      const blob = await resp.blob();
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${mbti}.png`; // 저장 파일명
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      window.open(imgSrc, "_blank");
+    }
+  };
+
+  //카톡 공유하기
+  useEffect(() => {
+    if (!window.Kakao) {
+      const script = document.createElement("script");
+      script.src = "https://t1.kakaocdn.net/kakao_js_sdk/2.5.0/kakao.min.js";
+      script.async = true;
+      script.onload = () => {
+        if (!window.Kakao.isInitialized()) {
+          window.Kakao.init(KAKAO_KEY);
+        }
+      };
+      document.head.appendChild(script);
+    } else if (!window.Kakao.isInitialized()) {
+      window.Kakao.init(KAKAO_KEY);
+    }
+  }, []);
+
+  const handleKakaoShare = () => {
+    if (!window.Kakao) return;
+
+    const absoluteImgUrl = new URL(images.shareImg, window.location.origin).href;
+
+    const shareUrl = window.location.href; // 현재 결과 페이지
+    const startUrl = window.location.origin + "/"; // 시작 페이지
+
+    window.Kakao.Share.sendDefault({
+      objectType: "feed",
+      content: {
+        title: "✨ 나의 신데렐라 MBTI는?",
+        description: `${mbti} 타입 신데렐라`,
+        imageUrl: absoluteImgUrl, 
+        link: {
+          mobileWebUrl: shareUrl,
+          webUrl: shareUrl,
+        },
+      },
+      buttons: [
+        {
+          title: "나도 테스트 해보기",
+          link: {
+            mobileWebUrl: shareUrl,
+            webUrl: shareUrl,
+          },
+        },
+      ],
+    });
+  };
+
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-center text-center bg-white p-6">
-      <div>
+    <div className="w-full min-h-screen flex flex-col items-center justify-center text-center bg-white">
+      <div className="bg-[#C2F2FF] px-6 py-4 text-center w-full mt-10">
+        <p className="UhBee text-sm text-gray-600 font-semibold">
+          신데렐라 테스트 - 제작 성결대학교 멋쟁이사자처럼 13기
+        </p>
+      </div>
+      <div className="mt-2">
         <p className="text-[12px] Medium my-8">
           안녕하세요 (꾸벅)🙇🏻‍♀️🦁 <br />
           성결대학교 멋쟁이사자처럼 13기 운영진입니다 !<br />
@@ -60,25 +135,31 @@ const Result = () => {
         </p>
       </div>
       {imgSrc ? (
-        <img
-          src={imgSrc}
-          alt={mbti}
-          className="w-[80%] max-w-[520px] bg-white p-6 rounded-2xl border-2"
-        />
+        <img src={imgSrc} alt={mbti} className="w-[85%]" />
       ) : (
         <p className="text-gray-600">해당 MBTI 이미지가 없어요 😅</p>
       )}
       <div className="flex flex-col items-center gap-4 my-8">
-        <button className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px]" onClick={goStart}> 
+        <button
+          className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px] cursor-pointer"
+          onClick={goStart}
+        >
           테스트 다시하기
         </button>
-        <button className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px]">
+        <button
+          className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px] cursor-pointer"
+          onClick={handleKakaoShare}
+        >
           카카오톡 공유하기
         </button>
-        <button className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px]">
+        <button
+          className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px] cursor-pointer"
+          onClick={handleSaveImage}
+          disabled={!imgSrc}
+        >
           이미지로 저장하기
         </button>
-        <button className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px]">
+        <button className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px] cursor-pointer">
           제작자
         </button>
       </div>
@@ -110,7 +191,7 @@ const Result = () => {
           <div className="mt-5">
             <button
               onClick={goStart}
-              className="bg-[#2E6DFF] p-3 w-[190px] rounded-2xl text-white Medium text-[12px]"
+              className="bg-[#2E6DFF] p-3 w-[190px] rounded-2xl text-white Medium text-[12px] cursor-pointer"
             >
               테스트 하러 가기 →
             </button>
