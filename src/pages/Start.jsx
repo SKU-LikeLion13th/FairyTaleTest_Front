@@ -1,5 +1,6 @@
 import React from "react";
 import images from "../utils/Images.jsx";
+import TestEx from "./TestEx.jsx";
 
 const Start = () => {
   return (
@@ -51,6 +52,7 @@ const Start = () => {
               <button className="bg-[#272727] p-3 mx-5 rounded-2xl text-white">
                 제작자 →
               </button>
+              <TestEx/>
             </div>
           </div>
         </div>
