@@ -3,6 +3,7 @@ import Lottie from "lottie-react";
 import loadingAnimation from "../assets/lottie/loading.json";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { encodeData } from "../utils/b64";
 
 export default function LoadingPage() {
   const location = useLocation();
@@ -16,15 +17,31 @@ export default function LoadingPage() {
 
     const sendMBTIResult = async () => {
       try {
+        console.log("전송할 데이터:", answers);
+
         const response = await axios.post(
           "https://calc.sku-sku.com/mbti/result",
-          { answers }
+          answers, // 배열 직접 전송
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
         );
+
         console.log("응답 데이터:", response.data);
 
-        // navigate("/mbti/final", { state: { result: response.data } });
+        // MBTI 결과를 객체로 만들기
+        const result = { mbti: response.data.mbti }; // 필요하면 점수/설명 더 넣기
+
+        // base64로 인코딩
+        const encoded = encodeData(result);
+
+        // URL 파라미터로 navigate
+        navigate(`/result?data=${encoded}`);
       } catch (error) {
-        console.error("API 요청 실패:", error);
+        console.error("API 요청 실패:", error.response?.data || error.message);
+        console.error("전체 에러:", error);
       }
     };
 
@@ -32,7 +49,7 @@ export default function LoadingPage() {
   }, [answers, navigate]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col pt-10">
       {/* 헤더 */}
       <div className="bg-[#C2F2FF] px-6 py-4 text-center">
         <p className="UhBee text-sm text-gray-600 font-semibold">

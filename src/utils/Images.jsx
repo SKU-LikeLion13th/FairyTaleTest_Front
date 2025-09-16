@@ -22,7 +22,13 @@ const images = {
   ISTJ: `${PATH}assets/images/mbti/ISTJ.png`,
   ISTP: `${PATH}assets/images/mbti/ISTP.png`,
 
-  shareImg:`${PATH}assets/images/shareImg.png`,
+  shareImg: `${PATH}assets/images/shareImg.png`,
+
+  구혜원: `${PATH}assets/images/team/구혜원.png`,
+  서민주: `${PATH}assets/images/team/서민주.png`,
+  신민서: `${PATH}assets/images/team/신민서.png`,
+  한민규: `${PATH}assets/images/team/한민규.png`,
+  노주희: `${PATH}assets/images/team/노주희.png`,
 };
 
 export default images;

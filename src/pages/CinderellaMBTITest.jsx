@@ -191,7 +191,7 @@ const CinderellaMBTITest = () => {
   const progress = (currentStep / 12) * 100;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-10">
       {/* 헤더 */}
       <div className="bg-[#C2F2FF] px-6 py-4 text-center">
         <p className="UhBee text-sm text-gray-600 font-semibold">
@@ -200,8 +200,8 @@ const CinderellaMBTITest = () => {
       </div>
 
       {/* 진행바 */}
-      <div className="px-13 py-6">
-        <div className="flex items-center justify-between mb-2">
+      <div className="px-13 mt-12 mb-14">
+        <div className="flex items-center justify-between mb-4">
           <button onClick={goBack} disabled={currentStep === 1}>
             <MoveLeft
               className={`w-5 h-5 ${
@@ -219,25 +219,25 @@ const CinderellaMBTITest = () => {
       </div>
 
       {/* 질문 내용 */}
-      <div className="px-6 pb-8">
-        <div className="text-center mb-8">
-          <h2 className="UhBee text-2xl text-[#8F8F8F] mb-6">
+      <div className="px-6">
+        <div className="text-center">
+          <h2 className="UhBee text-2xl text-[#8F8F8F]">
             #{currentStep} {question.scene}
           </h2>
 
-          <p className="Title text-sm mb-4 mt-10 whitespace-pre-line">
+          <p className="Title text-sm mb-4 mt-16 whitespace-pre-line">
             {question.description}
           </p>
-          <p className="Title text-sm mb-17">{question.question}</p>
+          <p className="Title text-sm mb-20">{question.question}</p>
         </div>
 
         {/* 선택지 */}
-        <div className="space-y-10">
+        <div className="space-y-12 pb-20">
           {question.options.map((option, index) => (
             <button
               key={index}
               onClick={() => handleAnswer(option.value)}
-              className="w-full px-4 py-8 border shadow-md border-[#00B7FF] rounded-xl text-xs text-center hover:border-blue-400 hover:bg-blue-50 transition-all duration-200">
+              className="w-full px-4 py-9 border shadow-md bg-[#FAFAFA] border-[#00B7FF] rounded-xl text-xs text-center hover:border-blue-400 hover:bg-blue-50 transition-all duration-200">
               <p className="Title leading-relaxed whitespace-pre-line">
                 {option.text}
               </p>

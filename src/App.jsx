@@ -4,6 +4,7 @@ import Result from "./pages/Result";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CinderellaTest from "./pages/CinderellaMBTITest";
 import Loading from "./pages/LoadingPage";
+import Team from "./pages/Team";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/result" element={<Result />} />
           <Route path="/cinderella" element={<CinderellaTest />} />
           <Route path="loading" element={<Loading />} />
+          <Route path="team" element={<Team />} />
         </Routes>
       </div>
     </Router>
