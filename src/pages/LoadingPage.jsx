@@ -38,6 +38,7 @@ export default function LoadingPage() {
         const encoded = encodeData(result);
 
         // URL 파라미터로 navigate
+        sessionStorage.setItem("didTest", "1");
         navigate(`/result?data=${encoded}`);
       } catch (error) {
         console.error("API 요청 실패:", error.response?.data || error.message);
