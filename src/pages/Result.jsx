@@ -84,9 +84,9 @@ const Result = () => {
   }, []);
 
   const handleKakaoShare = () => {
-    if (!window.Kakao) return;
+    if (!window.Kakao || !imgSrc) return;
 
-    const absoluteImgUrl = new URL(images.shareImg, window.location.origin)
+    const absoluteImgUrl = new URL(imgSrc, window.location.origin)
       .href;
 
     const shareUrl = window.location.href; // 현재 결과 페이지
@@ -99,16 +99,16 @@ const Result = () => {
         description: `${mbti} 타입 신데렐라`,
         imageUrl: absoluteImgUrl,
         link: {
-          mobileWebUrl: startUrl,
-          webUrl: startUrl,
+          mobileWebUrl: shareUrl,
+          webUrl: shareUrl,
         },
       },
       buttons: [
         {
           title: "나도 테스트 해보기",
           link: {
-            mobileWebUrl: shareUrl,
-            webUrl: shareUrl,
+            mobileWebUrl: startUrl,
+            webUrl: startUrl,
           },
         },
       ],

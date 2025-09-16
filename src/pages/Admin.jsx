@@ -1,7 +1,4 @@
-// src/pages/Admin.jsx
-
 import React, { useEffect, useMemo, useState } from "react";
-
 import axios from "axios";
 
 const api = axios.create({
@@ -92,10 +89,10 @@ const Admin = () => {
         setErr("");
         const { data } = await api.get("/member/all");
         const list = Array.isArray(data) ? data : [];
-        const normalized = list.map((raw, idx) => {
+        const normalized = list.map((raw) => {
           const name = extractMemberInfo(raw?.memberInfo ?? raw); 
           return {
-            id: String(idx),
+            id: String(raw.id),
             name,
             checked: !!raw?.isCheck, 
           };
@@ -181,7 +178,7 @@ const Admin = () => {
                 </th>
 
                 <th className="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
-                  UUID
+                  ID
                 </th>
 
                 <th className="w-28 px-3 py-3 text-center text-xs font-semibold uppercase tracking-wider text-gray-500">

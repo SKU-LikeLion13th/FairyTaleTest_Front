@@ -29,6 +29,8 @@ const images = {
   신민서: `${PATH}assets/images/team/신민서.png`,
   한민규: `${PATH}assets/images/team/한민규.png`,
   노주희: `${PATH}assets/images/team/노주희.png`,
+
+  og: `${PATH}assets/images/og.png`,
 };
 
 export default images;
