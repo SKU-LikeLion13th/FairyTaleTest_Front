@@ -1,19 +1,13 @@
 @import "tailwindcss";
 
 #root {
-  box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
-}
-
-.App {
   min-height: 100vh;
   background-color: #ffffff;
-  width: 375px;
-}
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
 
-body {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
+  flex-direction: column;
 }

@@ -16,9 +16,8 @@ const Present = () => {
 
     try {
       const res = await api.post("/member/add", {
-        memberInfo: value
+        memberInfo: value,
       });
-      console.log(res.status, res.data);
       alert("제출 완료! 🎉");
       setValue("");
     } catch (err) {
@@ -59,8 +58,7 @@ const Present = () => {
               isEmpty
                 ? "bg-[#B0B0B0] text-[#585858]"
                 : "bg-[#2E6DFF] text-white cursor-pointer"
-            }`}
-        >
+            }`}>
           제출하기
         </button>
       </div>

@@ -65,10 +65,10 @@ export default function Team() {
             </div>
 
             <div>
-              <p className="Light text-[7px]">{member.department}</p>
+              <p className="Light text-[6.5px]">{member.department}</p>
               <p className="font-semibold text-[10px]">{member.name}</p>
               <div className="w-16 h-[0.6px] bg-[#1880FF] mx-auto my-2"></div>
-              <p className="Light text-[7.5px] pb-2">{member.role}</p>
+              <p className="text-[8.5px] pb-2">{member.role}</p>
             </div>
           </div>
         ))}

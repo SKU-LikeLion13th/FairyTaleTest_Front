@@ -10,15 +10,11 @@ export default function LoadingPage() {
   const navigate = useNavigate();
   const { answers } = location.state || {};
 
-  console.log("넘어온 답변 데이터:", answers);
-
   useEffect(() => {
     if (!answers) return;
 
     const sendMBTIResult = async () => {
       try {
-        console.log("전송할 데이터:", answers);
-
         const response = await axios.post(
           "https://calc.sku-sku.com/mbti/result",
           answers, // 배열 직접 전송
@@ -28,8 +24,6 @@ export default function LoadingPage() {
             },
           }
         );
-
-        console.log("응답 데이터:", response.data);
 
         // MBTI 결과를 객체로 만들기
         const result = { mbti: response.data.mbti }; // 필요하면 점수/설명 더 넣기

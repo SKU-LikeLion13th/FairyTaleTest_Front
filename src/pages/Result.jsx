@@ -37,7 +37,6 @@ const Result = () => {
   const isValid = !!mbti && !!imgSrc;
 
   const showPresent = didTest && isValid;
-  console.log(imgSrc);
 
   const goStart = () => {
     navigate("/");
@@ -87,7 +86,8 @@ const Result = () => {
   const handleKakaoShare = () => {
     if (!window.Kakao) return;
 
-    const absoluteImgUrl = new URL(images.shareImg, window.location.origin).href;
+    const absoluteImgUrl = new URL(images.shareImg, window.location.origin)
+      .href;
 
     const shareUrl = window.location.href; // 현재 결과 페이지
     const startUrl = window.location.origin + "/"; // 시작 페이지
@@ -97,7 +97,7 @@ const Result = () => {
       content: {
         title: "✨ 나의 신데렐라 MBTI는?",
         description: `${mbti} 타입 신데렐라`,
-        imageUrl: absoluteImgUrl, 
+        imageUrl: absoluteImgUrl,
         link: {
           mobileWebUrl: shareUrl,
           webUrl: shareUrl,
@@ -145,24 +145,23 @@ const Result = () => {
       <div className="flex flex-col items-center gap-4 my-8">
         <button
           className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px] cursor-pointer"
-          onClick={goStart}
-        >
+          onClick={goStart}>
           테스트 다시하기
         </button>
         <button
           className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px] cursor-pointer"
-          onClick={handleKakaoShare}
-        >
+          onClick={handleKakaoShare}>
           카카오톡 공유하기
         </button>
         <button
           className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px] cursor-pointer"
           onClick={handleSaveImage}
-          disabled={!imgSrc}
-        >
+          disabled={!imgSrc}>
           이미지로 저장하기
         </button>
-        <button className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px] cursor-pointer" onClick={making}>
+        <button
+          className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px] cursor-pointer"
+          onClick={making}>
           제작자
         </button>
       </div>
@@ -194,8 +193,7 @@ const Result = () => {
           <div className="mt-5">
             <button
               onClick={goStart}
-              className="bg-[#2E6DFF] p-3 w-[190px] rounded-2xl text-white Medium text-[12px] cursor-pointer"
-            >
+              className="bg-[#2E6DFF] p-3 w-[190px] rounded-2xl text-white Medium text-[12px] cursor-pointer">
               테스트 하러 가기 →
             </button>
           </div>
