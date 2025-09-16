@@ -1,10 +1,10 @@
 import React from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom"; // ✅ 추가
+import { useNavigate } from "react-router-dom";
 import images from "../utils/Images";
 
 export default function Team() {
-  const navigate = useNavigate(); // ✅ 훅 사용
+  const navigate = useNavigate();
 
   const teamMembers = [
     {
