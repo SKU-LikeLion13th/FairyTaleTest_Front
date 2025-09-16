@@ -99,8 +99,8 @@ const Result = () => {
         description: `${mbti} 타입 신데렐라`,
         imageUrl: absoluteImgUrl,
         link: {
-          mobileWebUrl: shareUrl,
-          webUrl: shareUrl,
+          mobileWebUrl: startUrl,
+          webUrl: startUrl,
         },
       },
       buttons: [
