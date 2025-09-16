@@ -12,7 +12,7 @@ const Start = () => {
     navigate("/team");
   };
   return (
-    <div className="min-h-screen relative w-full bg-[#D9F3FE] overflow-hidden">
+    <div className="min-h-screen relative w-full bg-[#D9F3FE] overflow-hidden py-8">
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img src={images.cloud1} className="absolute top-[22%] right-0" />
         <img src={images.cloud2} className="absolute bottom-[40%]" />

@@ -38,35 +38,53 @@ const Result = () => {
 
   const showPresent = didTest && isValid;
 
-  const goStart = () => {
-    navigate("/");
-  };
-  const making = () => {
-    navigate("/team");
-  };
+  const goStart = () => navigate("/");
+  const making = () => navigate("/team");
 
-  //사진 저장 기능
+  // 환경 감지 (카톡 인앱, iOS 여부)
+  const ua = navigator.userAgent || "";
+  const isIOS = /iP(hone|od|ad)/i.test(ua);
+  const isKakaoInapp = /\bKAKAOTALK\b/i.test(ua) || /\bDaumApps\b/i.test(ua);
+
+  const toAbsolute = (url) => new URL(url, window.location.origin).href;
+
+  // 사진 저장 기능
   const handleSaveImage = async () => {
     if (!imgSrc || !mbti) return;
+
+    const absoluteImgUrl = toAbsolute(imgSrc);
+
+    // iOS/카톡 인앱: blob 다운로드 막힘 → 새 탭 열기
+    if (isKakaoInapp || isIOS) {
+      try {
+        window.open(absoluteImgUrl, "_blank", "noopener");
+      } catch {
+        window.location.href = absoluteImgUrl;
+      }
+      alert("이미지를 길게 눌러 '사진 저장' 또는 '다운로드'를 선택해 주세요 😊");
+      return;
+    }
+
+    // 일반 브라우저: 기존 방식
     try {
-      const resp = await fetch(imgSrc, { mode: "cors" });
+      const resp = await fetch(absoluteImgUrl, { mode: "cors" });
       const blob = await resp.blob();
       const url = URL.createObjectURL(blob);
 
       const a = document.createElement("a");
       a.href = url;
-      a.download = `${mbti}.png`; // 저장 파일명
+      a.download = `${mbti}.png`;
       document.body.appendChild(a);
       a.click();
       a.remove();
       URL.revokeObjectURL(url);
     } catch (e) {
       console.error(e);
-      window.open(imgSrc, "_blank");
+      window.open(absoluteImgUrl, "_blank", "noopener");
     }
   };
 
-  //카톡 공유하기
+  // 카톡 공유하기
   useEffect(() => {
     if (!window.Kakao) {
       const script = document.createElement("script");
@@ -86,11 +104,9 @@ const Result = () => {
   const handleKakaoShare = () => {
     if (!window.Kakao || !imgSrc) return;
 
-    const absoluteImgUrl = new URL(imgSrc, window.location.origin)
-      .href;
-
-    const shareUrl = window.location.href; // 현재 결과 페이지
-    const startUrl = window.location.origin + "/"; // 시작 페이지
+    const absoluteImgUrl = toAbsolute(imgSrc);
+    const shareUrl = window.location.href;
+    const startUrl = window.location.origin + "/";
 
     window.Kakao.Share.sendDefault({
       objectType: "feed",
@@ -138,30 +154,34 @@ const Result = () => {
         </p>
       </div>
       {imgSrc ? (
-        <img src={imgSrc} alt={mbti} className="w-[85%]" />
+        <img src={imgSrc} alt={mbti} className="w-[75%]" />
       ) : (
         <p className="text-gray-600">해당 MBTI 이미지가 없어요 😅</p>
       )}
       <div className="flex flex-col items-center gap-4 my-8">
         <button
           className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px] cursor-pointer"
-          onClick={goStart}>
+          onClick={goStart}
+        >
           테스트 다시하기
         </button>
         <button
           className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px] cursor-pointer"
-          onClick={handleKakaoShare}>
+          onClick={handleKakaoShare}
+        >
           카카오톡 공유하기
         </button>
         <button
           className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px] cursor-pointer"
           onClick={handleSaveImage}
-          disabled={!imgSrc}>
+          disabled={!imgSrc}
+        >
           이미지로 저장하기
         </button>
         <button
           className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px] cursor-pointer"
-          onClick={making}>
+          onClick={making}
+        >
           제작자
         </button>
       </div>
@@ -193,7 +213,8 @@ const Result = () => {
           <div className="mt-5">
             <button
               onClick={goStart}
-              className="bg-[#2E6DFF] p-3 w-[190px] rounded-2xl text-white Medium text-[12px] cursor-pointer">
+              className="bg-[#2E6DFF] p-3 w-[190px] rounded-2xl text-white Medium text-[12px] cursor-pointer"
+            >
               테스트 하러 가기 →
             </button>
           </div>
@@ -202,4 +223,5 @@ const Result = () => {
     </div>
   );
 };
+
 export default Result;

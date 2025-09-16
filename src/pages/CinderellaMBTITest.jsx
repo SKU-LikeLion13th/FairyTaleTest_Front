@@ -232,12 +232,12 @@ const CinderellaMBTITest = () => {
         </div>
 
         {/* 선택지 */}
-        <div className="space-y-12 pb-20">
+        <div className="space-y-12 pb-20 flex flex-col items-center">
           {question.options.map((option, index) => (
             <button
               key={index}
               onClick={() => handleAnswer(option.value)}
-              className="w-full px-4 py-9 border shadow-md bg-[#FAFAFA] border-[#00B7FF] rounded-xl text-xs text-center hover:border-blue-400 hover:bg-blue-50 transition-all duration-200">
+              className="w-[85%] px-4 py-9 border shadow-md bg-[#FAFAFA] border-[#00B7FF] rounded-xl text-xs text-center hover:border-blue-400 hover:bg-blue-50 transition-all duration-200">
               <p className="Title leading-relaxed whitespace-pre-line">
                 {option.text}
               </p>

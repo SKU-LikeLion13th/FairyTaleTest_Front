@@ -29,7 +29,7 @@ const Present = () => {
   const isEmpty = !value.trim();
 
   return (
-    <div className="w-[85%]">
+    <div className="w-[80%]">
       <div className="bg-[#1C1C1C] w-full py-10 text-white Medium mt-4 mb-8 rounded-2xl">
         <p className="text-[15px] pb-1">🎁 상품 수령 안내 🎁</p>
         <p className="text-[12px] leading-6 mb-4">
