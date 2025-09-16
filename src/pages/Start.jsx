@@ -1,9 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import images from "../utils/Images.jsx";
-import TestEx from "./TestEx.jsx";
 
 const Start = () => {
-  console.log(images.StartImg)
+  const navigate = useNavigate();
+
+  const goToCinderella = () => {
+    navigate("/cinderella");
+  };
+  const making = () => {
+    navigate("/team");
+  };
   return (
     <div className="min-h-screen relative w-full bg-[#D9F3FE] overflow-hidden">
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -46,13 +53,12 @@ const Start = () => {
               지금부터 너만의 신데렐라 유형을 알아보자!
             </p>
             <div className="flex flex-col gap-5 Regular text-[15px]">
-              <button className="bg-[#0073FF] p-3 mx-5 rounded-2xl text-white cursor-pointer">
+              <button className="bg-[#0073FF] p-3 mx-5 rounded-2xl text-white cursor-pointer" onClick={goToCinderella}>
                 시작하기 →
               </button>
-              <button className="bg-[#272727] p-3 mx-5 rounded-2xl text-white cursor-pointer">
+              <button className="bg-[#272727] p-3 mx-5 rounded-2xl text-white cursor-pointer" onClick={making}>
                 제작자 →
               </button>
-              <TestEx />
             </div>
           </div>
         </div>

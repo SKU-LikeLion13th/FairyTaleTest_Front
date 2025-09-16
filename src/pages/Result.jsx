@@ -42,6 +42,9 @@ const Result = () => {
   const goStart = () => {
     navigate("/");
   };
+  const making = () => {
+    navigate("/team");
+  };
 
   //사진 저장 기능
   const handleSaveImage = async () => {
@@ -159,7 +162,7 @@ const Result = () => {
         >
           이미지로 저장하기
         </button>
-        <button className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px] cursor-pointer">
+        <button className="bg-[#2B2B2B] p-3 w-[190px] rounded-2xl text-white Medium text-[14px] cursor-pointer" onClick={making}>
           제작자
         </button>
       </div>
